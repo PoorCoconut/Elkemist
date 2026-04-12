@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MusicTrack" format=3 uid="uid://cf6wh5r475byb"]
+
+[ext_resource type="Script" uid="uid://ok7aycfrhu2f" path="res://systems/Custom Music Track Resource/MusicTrack.gd" id="1_j7kpo"]
+[ext_resource type="AudioStream" uid="uid://b4dhg1ymmyv7w" path="res://sound/music/example_music/Brighten.mp3" id="2_ltjyp"]
+[ext_resource type="AudioStream" uid="uid://bhl33w8seh0h5" path="res://sound/music/example_music/High Hats.mp3" id="2_pxcbf"]
+[ext_resource type="AudioStream" uid="uid://cs2uq2glmo7gb" path="res://sound/music/example_music/Wahhh Pad.mp3" id="3_pxcbf"]
+[ext_resource type="AudioStream" uid="uid://dhncqcdsnuepe" path="res://sound/music/example_music/Drum Beat .mp3" id="5_5f8a8"]
+
+[resource]
+script = ExtResource("1_j7kpo")
+track_name = "music1"
+stems = Array[AudioStream]([ExtResource("3_pxcbf"), ExtResource("2_pxcbf"), ExtResource("2_ltjyp"), ExtResource("5_5f8a8")])
+metadata/_custom_type_script = "uid://ok7aycfrhu2f"
