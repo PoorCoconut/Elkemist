@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cjn4eyn404pkf"]
+
+[ext_resource type="PackedScene" uid="uid://b3fobc4mms4jw" path="res://systems/World Camera Component/world_camera_component.tscn" id="1_kysyl"]
+[ext_resource type="PackedScene" uid="uid://be8jw63t68sxd" path="res://actors/player/top_down_player.tscn" id="2_7wjcy"]
+
+[node name="WorldMain" type="Node2D" unique_id=1840048048]
+
+[node name="WorldCameraComponent" parent="." unique_id=1725945058 instance=ExtResource("1_kysyl")]
+zoom = Vector2(1.25, 1.25)
+camera_mode = 0
+following = false
+
+[node name="TopDownPlayer" parent="." unique_id=240714517 instance=ExtResource("2_7wjcy")]
+position = Vector2(235, 123)

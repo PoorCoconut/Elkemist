@@ -22,7 +22,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_h6sl1")
-next_level_path = "uid://cbh3de4aa1ibn"
+next_level_path = "uid://cjn4eyn404pkf"
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=29496978]
 layout_mode = 1
@@ -39,7 +39,7 @@ anchor_right = 1.0
 offset_bottom = 128.0
 grow_horizontal = 2
 bbcode_enabled = true
-text = "GAME NAME"
+text = "ELKEMY"
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1

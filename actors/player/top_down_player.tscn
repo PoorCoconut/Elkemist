@@ -3,11 +3,33 @@
 [ext_resource type="PackedScene" uid="uid://b3vev5pcqxupu" path="res://actors/player/baseplayer.tscn" id="1_wdfuy"]
 [ext_resource type="Script" uid="uid://bhxjxgka2uddu" path="res://systems/FSM/FSM.gd" id="2_tbogj"]
 [ext_resource type="Script" uid="uid://bnjbtr6imgm3d" path="res://actors/player/top_down_player.gd" id="2_xeelx"]
+[ext_resource type="Texture2D" uid="uid://du8fhuo16kxib" path="res://actors/player/player.png" id="3_2ustd"]
 [ext_resource type="Script" uid="uid://qri00n31jglx" path="res://actors/player/PlayerFSM/TopDown/state_idle.gd" id="3_snjlb"]
 [ext_resource type="Script" uid="uid://b1ci27y347n1w" path="res://actors/player/PlayerFSM/TopDown/state_run.gd" id="4_la8er"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_28xrf"]
+atlas = ExtResource("3_2ustd")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dgs04"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_28xrf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="TopDownPlayer" unique_id=240714517 instance=ExtResource("1_wdfuy")]
 script = ExtResource("2_xeelx")
+MAX_SPEED = 70.0
+FRICTION = 600.0
+
+[node name="Sprite" parent="." index="0" unique_id=86260587]
+sprite_frames = SubResource("SpriteFrames_dgs04")
+offset = Vector2(0, -10)
 
 [node name="DebugStateLabel" parent="." index="2" unique_id=1664998739]
 unique_name_in_owner = true
