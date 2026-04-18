@@ -9,7 +9,7 @@ enum CameraMode {
 @export var camera_mode: CameraMode = CameraMode.ENTITY_ATTACHED
 
 
-@export var target : CharacterBody2D
+@export var target : PhysicsBody2D
 @export var following : bool = true
 
 var cameraShakeNoise : FastNoiseLite

@@ -1,52 +1,231 @@
 [gd_scene format=3 uid="uid://btbcu7i2ahwq5"]
 
 [ext_resource type="Script" uid="uid://dax15qxwg4uwj" path="res://systems/HUD/player_hud.gd" id="1_cadqa"]
+[ext_resource type="Texture2D" uid="uid://dnxvkfesntpyr" path="res://game_assets/assets.png" id="2_rhs8c"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cadqa"]
-bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhs8c"]
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i0keh"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
+[sub_resource type="AtlasTexture" id="AtlasTexture_i0keh"]
+atlas = ExtResource("2_rhs8c")
+region = Rect2(32, 16, 32, 32)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2gw1j"]
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0, 0, 0)
+bg_color = Color(0.09019608, 0.09019608, 0.09019608, 0.4745098)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1tei2"]
+atlas = ExtResource("2_rhs8c")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7kxea"]
+atlas = ExtResource("2_rhs8c")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_prc57"]
+atlas = ExtResource("2_rhs8c")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vqej"]
+atlas = ExtResource("2_rhs8c")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_07urj"]
+atlas = ExtResource("2_rhs8c")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_80aiu"]
+bg_color = Color(0.09019608, 0.09019608, 0.09019608, 0.4745098)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rhs8c"]
 
 [node name="PlayerHUD" type="CanvasLayer" unique_id=1878162404]
 script = ExtResource("1_cadqa")
 
-[node name="BarContainer" type="Node2D" parent="." unique_id=1156197549]
-
-[node name="WhiteBar" type="ProgressBar" parent="BarContainer" unique_id=1739072480]
-unique_name_in_owner = true
-offset_left = 8.0
-offset_top = 8.0
+[node name="FuelProgress" type="ProgressBar" parent="." unique_id=1201653244]
+offset_left = 24.0
+offset_top = 16.0
 offset_right = 136.0
-offset_bottom = 24.0
-theme_override_styles/background = SubResource("StyleBoxFlat_cadqa")
-theme_override_styles/fill = SubResource("StyleBoxFlat_rhs8c")
+offset_bottom = 32.0
 show_percentage = false
 
-[node name="BarChaser" type="ProgressBar" parent="BarContainer" unique_id=429415386]
-unique_name_in_owner = true
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 136.0
-offset_bottom = 24.0
-theme_override_styles/background = SubResource("StyleBoxFlat_i0keh")
-theme_override_styles/fill = SubResource("StyleBoxFlat_2gw1j")
+[node name="BrewingProgress" type="ProgressBar" parent="." unique_id=267753264]
+offset_left = 24.0
+offset_top = 33.0
+offset_right = 120.0
+offset_bottom = 37.0
 show_percentage = false
 
-[node name="Timer" type="Timer" parent="." unique_id=277835653]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1368534429]
+position = Vector2(24, 24)
+texture = SubResource("AtlasTexture_i0keh")
+
+[node name="ResourcesUI" type="Panel" parent="." unique_id=1335457186]
+offset_left = 192.0
+offset_top = 8.0
+offset_right = 352.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2gw1j")
+
+[node name="MarginContainer" type="MarginContainer" parent="ResourcesUI" unique_id=919520764]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ResourcesUI/MarginContainer" unique_id=118968613]
+layout_mode = 2
+
+[node name="FireWood" type="TextureRect" parent="ResourcesUI/MarginContainer/HBoxContainer" unique_id=642196426]
+layout_mode = 2
+texture = SubResource("AtlasTexture_1tei2")
+expand_mode = 3
+
+[node name="label1" type="RichTextLabel" parent="ResourcesUI/MarginContainer/HBoxContainer/FireWood" unique_id=796296284]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -22.0
+offset_top = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+bbcode_enabled = true
+text = "0"
+fit_content = true
+horizontal_alignment = 2
+
+[node name="Sunfruit" type="TextureRect" parent="ResourcesUI/MarginContainer/HBoxContainer" unique_id=2055831843]
+layout_mode = 2
+texture = SubResource("AtlasTexture_7kxea")
+expand_mode = 3
+
+[node name="label2" type="RichTextLabel" parent="ResourcesUI/MarginContainer/HBoxContainer/Sunfruit" unique_id=1613903147]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -22.0
+offset_top = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+bbcode_enabled = true
+text = "0"
+fit_content = true
+horizontal_alignment = 2
+
+[node name="Kookaberry" type="TextureRect" parent="ResourcesUI/MarginContainer/HBoxContainer" unique_id=905674300]
+layout_mode = 2
+texture = SubResource("AtlasTexture_prc57")
+expand_mode = 3
+
+[node name="label3" type="RichTextLabel" parent="ResourcesUI/MarginContainer/HBoxContainer/Kookaberry" unique_id=929590083]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -22.0
+offset_top = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+bbcode_enabled = true
+text = "0"
+fit_content = true
+horizontal_alignment = 2
+
+[node name="Spicetooth" type="TextureRect" parent="ResourcesUI/MarginContainer/HBoxContainer" unique_id=134436042]
+layout_mode = 2
+texture = SubResource("AtlasTexture_1vqej")
+expand_mode = 3
+
+[node name="label4" type="RichTextLabel" parent="ResourcesUI/MarginContainer/HBoxContainer/Spicetooth" unique_id=557277693]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -22.0
+offset_top = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+bbcode_enabled = true
+text = "0"
+fit_content = true
+horizontal_alignment = 2
+
+[node name="Monga" type="TextureRect" parent="ResourcesUI/MarginContainer/HBoxContainer" unique_id=1953096701]
+layout_mode = 2
+texture = SubResource("AtlasTexture_07urj")
+expand_mode = 3
+
+[node name="label5" type="RichTextLabel" parent="ResourcesUI/MarginContainer/HBoxContainer/Monga" unique_id=1216905403]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -22.0
+offset_top = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+bbcode_enabled = true
+text = "0"
+fit_content = true
+horizontal_alignment = 2
+
+[node name="InventoryUI" type="Panel" parent="." unique_id=249692490]
+offset_left = 360.0
+offset_top = 8.0
+offset_right = 488.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_80aiu")
+
+[node name="MarginContainer" type="MarginContainer" parent="InventoryUI" unique_id=831546875]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InventoryUI/MarginContainer" unique_id=2112043206]
+layout_mode = 2
+
+[node name="Inv1" type="TextureRect" parent="InventoryUI/MarginContainer/HBoxContainer" unique_id=2009273352]
+layout_mode = 2
+texture = SubResource("AtlasTexture_rhs8c")
+expand_mode = 3
+
+[node name="Inv2" type="TextureRect" parent="InventoryUI/MarginContainer/HBoxContainer" unique_id=978524540]
+layout_mode = 2
+texture = SubResource("AtlasTexture_rhs8c")
+expand_mode = 3
+
+[node name="Inv3" type="TextureRect" parent="InventoryUI/MarginContainer/HBoxContainer" unique_id=404786667]
+layout_mode = 2
+texture = SubResource("AtlasTexture_rhs8c")
+expand_mode = 3
+
+[node name="Inv4" type="TextureRect" parent="InventoryUI/MarginContainer/HBoxContainer" unique_id=2065609703]
+layout_mode = 2
+texture = SubResource("AtlasTexture_rhs8c")
+expand_mode = 3

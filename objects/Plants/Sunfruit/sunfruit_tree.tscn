@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://dd45eaf37iw7u"]
+
+[ext_resource type="Script" uid="uid://b35uys8ikfjre" path="res://objects/Plants/Sunfruit/sunfruit_tree.gd" id="1_0dwmr"]
+[ext_resource type="Texture2D" uid="uid://dnxvkfesntpyr" path="res://game_assets/assets.png" id="1_4jlcy"]
+[ext_resource type="PackedScene" uid="uid://csaelec8vx46t" path="res://objects/Fruit/Resource/resource.tscn" id="2_4uter"]
+[ext_resource type="PackedScene" uid="uid://p3eg848tu85" path="res://systems/Hitbox and Hurtbox Components/hurtbox_component.tscn" id="2_ggvw0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggvw0"]
+atlas = ExtResource("1_4jlcy")
+region = Rect2(0, 32, 32, 48)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0dwmr"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4uter"]
+radius = 16.0
+
+[node name="SunfruitTree" type="StaticBody2D" unique_id=1721242678]
+script = ExtResource("1_0dwmr")
+resource_scene = ExtResource("2_4uter")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=756536236]
+position = Vector2(0, -16)
+texture = SubResource("AtlasTexture_ggvw0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1110676623]
+shape = SubResource("CircleShape2D_0dwmr")
+
+[node name="HurtboxComponent" parent="." unique_id=330416737 instance=ExtResource("2_ggvw0")]
+
+[node name="CollisionShape2D" parent="HurtboxComponent" index="0" unique_id=1993016751]
+shape = SubResource("CircleShape2D_4uter")
+
+[editable path="HurtboxComponent"]

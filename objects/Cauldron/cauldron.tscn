@@ -1,0 +1,231 @@
+[gd_scene format=3 uid="uid://cmgtuteua3ect"]
+
+[ext_resource type="Script" uid="uid://dntrc1ldvtr4c" path="res://objects/Cauldron/cauldron.gd" id="1_nvby6"]
+[ext_resource type="Texture2D" uid="uid://dnxvkfesntpyr" path="res://game_assets/assets.png" id="2_t5n4e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rl6nv"]
+atlas = ExtResource("2_t5n4e")
+region = Rect2(32, 16, 32, 32)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vrkcj"]
+radius = 8.0
+height = 28.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4havm"]
+radius = 37.01351
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t5n4e"]
+bg_color = Color(0.16078432, 0.16078432, 0.16078432, 0.41960785)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vrkcj"]
+atlas = ExtResource("2_t5n4e")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4havm"]
+atlas = ExtResource("2_t5n4e")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5n4e"]
+atlas = ExtResource("2_t5n4e")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bg6oe"]
+atlas = ExtResource("2_t5n4e")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tricj"]
+atlas = ExtResource("2_t5n4e")
+region = Rect2(48, 0, 16, 16)
+
+[node name="Cauldron" type="StaticBody2D" unique_id=1133878123]
+script = ExtResource("1_nvby6")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=830378476]
+position = Vector2(0, -8)
+texture = SubResource("AtlasTexture_rl6nv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1066303428]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_vrkcj")
+
+[node name="InteractionArea" type="Area2D" parent="." unique_id=220216122]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=491417986]
+shape = SubResource("CircleShape2D_4havm")
+
+[node name="CauldronUI" type="Panel" parent="." unique_id=593589981]
+unique_name_in_owner = true
+visible = false
+z_index = 1
+offset_left = -64.0
+offset_top = -80.0
+offset_right = 64.0
+offset_bottom = -32.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_t5n4e")
+
+[node name="MarginContainer" type="MarginContainer" parent="CauldronUI" unique_id=361395160]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CauldronUI/MarginContainer" unique_id=1105960893]
+layout_mode = 2
+
+[node name="Fuel" type="TextureButton" parent="CauldronUI/MarginContainer/HBoxContainer" unique_id=1526899025]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = SubResource("AtlasTexture_vrkcj")
+stretch_mode = 5
+
+[node name="label1" type="RichTextLabel" parent="CauldronUI/MarginContainer/HBoxContainer/Fuel" unique_id=1020787375]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "0"
+fit_content = true
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="GridContainer" type="GridContainer" parent="CauldronUI/MarginContainer/HBoxContainer" unique_id=1663765149]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 4
+
+[node name="SunfruitButton" type="TextureButton" parent="CauldronUI/MarginContainer/HBoxContainer/GridContainer" unique_id=629009758]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = SubResource("AtlasTexture_4havm")
+
+[node name="label2" type="RichTextLabel" parent="CauldronUI/MarginContainer/HBoxContainer/GridContainer/SunfruitButton" unique_id=597683392]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "0"
+fit_content = true
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="KookaberryButton" type="TextureButton" parent="CauldronUI/MarginContainer/HBoxContainer/GridContainer" unique_id=1478003315]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = SubResource("AtlasTexture_t5n4e")
+
+[node name="label3" type="RichTextLabel" parent="CauldronUI/MarginContainer/HBoxContainer/GridContainer/KookaberryButton" unique_id=342002049]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "0"
+fit_content = true
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="SpicetoothButton" type="TextureButton" parent="CauldronUI/MarginContainer/HBoxContainer/GridContainer" unique_id=421003413]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = SubResource("AtlasTexture_bg6oe")
+
+[node name="label4" type="RichTextLabel" parent="CauldronUI/MarginContainer/HBoxContainer/GridContainer/SpicetoothButton" unique_id=473681259]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "0"
+fit_content = true
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="MongaButton" type="TextureButton" parent="CauldronUI/MarginContainer/HBoxContainer/GridContainer" unique_id=497960978]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = SubResource("AtlasTexture_tricj")
+
+[node name="label5" type="RichTextLabel" parent="CauldronUI/MarginContainer/HBoxContainer/GridContainer/MongaButton" unique_id=1808668424]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "0"
+fit_content = true
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Inv1Button" type="TextureButton" parent="CauldronUI/MarginContainer/HBoxContainer/GridContainer" unique_id=911303741]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Inv2Button" type="TextureButton" parent="CauldronUI/MarginContainer/HBoxContainer/GridContainer" unique_id=964551663]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Inv3Button" type="TextureButton" parent="CauldronUI/MarginContainer/HBoxContainer/GridContainer" unique_id=1633358013]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Inv4Button" type="TextureButton" parent="CauldronUI/MarginContainer/HBoxContainer/GridContainer" unique_id=650068044]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="." method="_on_interaction_area_body_exited"]
+[connection signal="pressed" from="CauldronUI/MarginContainer/HBoxContainer/Fuel" to="." method="_on_fuel_pressed"]
+[connection signal="pressed" from="CauldronUI/MarginContainer/HBoxContainer/GridContainer/SunfruitButton" to="." method="_on_sunfruit_button_pressed"]
+[connection signal="pressed" from="CauldronUI/MarginContainer/HBoxContainer/GridContainer/KookaberryButton" to="." method="_on_kookaberry_button_pressed"]
+[connection signal="pressed" from="CauldronUI/MarginContainer/HBoxContainer/GridContainer/SpicetoothButton" to="." method="_on_spicetooth_button_pressed"]
+[connection signal="pressed" from="CauldronUI/MarginContainer/HBoxContainer/GridContainer/MongaButton" to="." method="_on_monga_button_pressed"]
+[connection signal="pressed" from="CauldronUI/MarginContainer/HBoxContainer/GridContainer/Inv1Button" to="." method="_on_inv_1_button_pressed"]
+[connection signal="pressed" from="CauldronUI/MarginContainer/HBoxContainer/GridContainer/Inv2Button" to="." method="_on_inv_2_button_pressed"]
+[connection signal="pressed" from="CauldronUI/MarginContainer/HBoxContainer/GridContainer/Inv3Button" to="." method="_on_inv_3_button_pressed"]
+[connection signal="pressed" from="CauldronUI/MarginContainer/HBoxContainer/GridContainer/Inv4Button" to="." method="_on_inv_4_button_pressed"]

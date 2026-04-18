@@ -1,29 +1,26 @@
 extends CanvasLayer
+class_name PlayerHUD
 
-@onready var WhiteBar = %WhiteBar
-@onready var BarChaser = %BarChaser
-var style 
+func _ready() -> void:
+	# Keep your existing connection
+	GameManager.inventory_updated.connect(update_ui)
+	
+	# Add the new Cauldron state connection
+	GameManager.cauldron_state_updated.connect(update_progress_bars)
+	
+	update_ui()
 
-func _ready():
-	style = BarChaser.get_theme_stylebox("fill") as StyleBoxFlat
-	# Listen for the signal and connect it to a local function
-	Events.player_hp_updated.connect(_on_player_hp_updated)
+func update_progress_bars() -> void:
+	# Access them directly and apply the GameManager values
+	$FuelProgress.value = GameManager.cauldron_fuel
+	
+	# Assuming BrewingProgress is a 0 to 100 scale. If it's 0 to 1, remove the * 100.0
+	$BrewingProgress.value = GameManager.brew_progress * 100.0
 
-# This runs automatically whenever the Player emits the signal
-func _on_player_hp_updated(current_hp: float, max_hp: float):
-	WhiteBar.max_value = max_hp
-	WhiteBar.value = current_hp
-	
-	style.bg_color = Color.GREEN.lerp(Color.RED, current_hp / max_hp)
-	var tween = create_tween()
-	tween.tween_property(BarChaser, "value", WhiteBar.value, 0.5).set_trans(Tween.TRANS_SINE)
-	
-	if BarChaser.value < 3:
-		BarChaser.value = 0
-	
-	if WhiteBar.value < 25:
-		var tween2 = create_tween()
-		tween2.tween_property($BarContainer, "modulate:a", 0.5, 0.5)
-	else:
-		var tween3 = create_tween()
-		tween3.tween_property($BarContainer, "modulate:a", 1, 0.5)
+func update_ui() -> void:
+	# Update the text of each label, matching the order in your scene tree
+	%label1.text = str(GameManager.ingredients["firewood"])
+	%label2.text = str(GameManager.ingredients["sunfruit"])
+	%label3.text = str(GameManager.ingredients["kookaberry"])
+	%label4.text = str(GameManager.ingredients["spicetooth"])
+	%label5.text = str(GameManager.ingredients["monga"])

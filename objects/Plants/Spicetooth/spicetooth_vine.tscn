@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dmeg7olbckfpv"]
+
+[ext_resource type="Script" uid="uid://d05dlpe7bcp4m" path="res://objects/Plants/Spicetooth/spicetooth_vine.gd" id="1_gplop"]
+[ext_resource type="PackedScene" uid="uid://csaelec8vx46t" path="res://objects/Fruit/Resource/resource.tscn" id="2_b683q"]
+[ext_resource type="Texture2D" uid="uid://dnxvkfesntpyr" path="res://game_assets/assets.png" id="2_j44sm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b683q"]
+atlas = ExtResource("2_j44sm")
+region = Rect2(64, 56, 16, 24)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aguo7"]
+radius = 40.0
+
+[node name="SpicetoothVine" type="Area2D" unique_id=1818116170]
+collision_mask = 2
+script = ExtResource("1_gplop")
+resource_scene = ExtResource("2_b683q")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1264878609]
+position = Vector2(0, -12)
+texture = SubResource("AtlasTexture_b683q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1394074211]
+shape = SubResource("CircleShape2D_aguo7")
+debug_color = Color(0, 0.6, 0.69803923, 0)

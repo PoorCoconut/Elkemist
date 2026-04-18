@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://csaelec8vx46t"]
+
+[ext_resource type="Script" uid="uid://dvvnqbmv51u1n" path="res://objects/Fruit/Resource/resource.gd" id="1_bgqna"]
+[ext_resource type="Texture2D" uid="uid://bh66r4r47lqrq" path="res://game_assets/resources_smallpx.png" id="2_tsjhn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_woynj"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u4p0i"]
+radius = 48.0
+
+[node name="Resource" type="Area2D" unique_id=751932926]
+collision_mask = 2
+script = ExtResource("1_bgqna")
+magnet_speed = 100.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1146606772]
+texture = ExtResource("2_tsjhn")
+hframes = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=874754506]
+shape = SubResource("CircleShape2D_woynj")
+
+[node name="MagnetArea" type="Area2D" parent="." unique_id=2074128933]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MagnetArea" unique_id=907774870]
+shape = SubResource("CircleShape2D_u4p0i")
+debug_color = Color(1, 0.581351, 0.31289336, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="MagnetArea" to="." method="_on_magnet_area_body_entered"]
+[connection signal="body_exited" from="MagnetArea" to="." method="_on_magnet_area_body_exited"]

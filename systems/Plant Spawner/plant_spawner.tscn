@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://djjfwkn2nd70o"]
+
+[ext_resource type="Script" uid="uid://888v4086fbim" path="res://systems/Plant Spawner/plant_spawner.gd" id="1_766tq"]
+[ext_resource type="PackedScene" uid="uid://dd45eaf37iw7u" path="res://objects/Plants/Sunfruit/sunfruit_tree.tscn" id="2_okwf8"]
+[ext_resource type="PackedScene" uid="uid://cqbrydk5l6umc" path="res://objects/Plants/Firewood/firewood_tree.tscn" id="3_w1o3s"]
+[ext_resource type="PackedScene" uid="uid://bjie0n3gg0i2y" path="res://objects/Plants/Kookaberry/kookaberry_bush.tscn" id="4_i1ps4"]
+[ext_resource type="PackedScene" uid="uid://dmeg7olbckfpv" path="res://objects/Plants/Spicetooth/spicetooth_vine.tscn" id="5_velvk"]
+[ext_resource type="PackedScene" uid="uid://chuxpw8k34fge" path="res://objects/Plants/Monga/monga_sprout.tscn" id="6_7fbxm"]
+
+[node name="PlantSpawner" type="Node2D" unique_id=1645006376]
+script = ExtResource("1_766tq")
+spawn_radius = 640.0
+max_spawn_attempts = 60
+sunfruit_scene = ExtResource("2_okwf8")
+firewood_scene = ExtResource("3_w1o3s")
+kookaberry_scene = ExtResource("4_i1ps4")
+spicetooth_scene = ExtResource("5_velvk")
+monga_scene = ExtResource("6_7fbxm")

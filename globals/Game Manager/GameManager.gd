@@ -6,6 +6,53 @@ const SAVE_PATH : String = "user://savegame.json"
 func _ready() -> void:
 	print("GAME MANAGER LOADED!")
 
+## INVENTORY SYSTEM
+signal inventory_updated
+
+const MAX_INGREDIENT_CAP : int = 10
+
+# The base resources that stack
+var ingredients: Dictionary = {
+	"firewood": 0,
+	"sunfruit": 0,
+	"kookaberry": 0,
+	"spicetooth": 0,
+	"monga": 0
+}
+
+# The 4-slot potion hotbar. 'null' means empty, otherwise it holds a string ID like "potion_red"
+var potions: Array = [null, null, null, null]
+
+func add_ingredient(item_name: String, amount: int = 1) -> bool:
+	if ingredients.has(item_name):
+		if ingredients[item_name] < MAX_INGREDIENT_CAP:
+			ingredients[item_name] += amount
+			
+			# Clamp the value so it never exceeds the max cap
+			if ingredients[item_name] > MAX_INGREDIENT_CAP:
+				ingredients[item_name] = MAX_INGREDIENT_CAP
+				
+			# Tell all UI menus to refresh their numbers
+			inventory_updated.emit() 
+			return true # Successfully picked up
+			
+		else:
+			print("Inventory full for: ", item_name)
+			return false # Failed to pick up, item stays on ground
+	return false
+
+##CAULDRON STUFF
+var cauldron_fuel: float = 100.0
+var brew_progress: float = 0.0 # Will be a value between 0.0 and 1.0
+signal cauldron_state_updated
+
+# A helper function to safely subtract ingredients when a button is clicked
+func consume_ingredient(item_name: String) -> bool:
+	if ingredients.has(item_name) and ingredients[item_name] > 0:
+		ingredients[item_name] -= 1
+		inventory_updated.emit()
+		return true
+	return false
 
 ##SAVE FILE LOGIC
 func save_player_position(player_pos: Vector2) -> void:

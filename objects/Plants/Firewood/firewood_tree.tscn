@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://cqbrydk5l6umc"]
+
+[ext_resource type="Script" uid="uid://dq02la3dmcevq" path="res://objects/Plants/Firewood/firewood_tree.gd" id="1_l7elj"]
+[ext_resource type="Texture2D" uid="uid://dnxvkfesntpyr" path="res://game_assets/assets.png" id="1_xl0sq"]
+[ext_resource type="PackedScene" uid="uid://csaelec8vx46t" path="res://objects/Fruit/Resource/resource.tscn" id="2_1hd0p"]
+[ext_resource type="PackedScene" uid="uid://p3eg848tu85" path="res://systems/Hitbox and Hurtbox Components/hurtbox_component.tscn" id="2_oahsk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oahsk"]
+atlas = ExtResource("1_xl0sq")
+region = Rect2(0, 16, 32, 16)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l7elj"]
+radius = 3.0
+height = 28.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oahsk"]
+radius = 9.0
+height = 34.0
+
+[node name="FirewoodTree" type="StaticBody2D" unique_id=1402554789]
+script = ExtResource("1_l7elj")
+resource_scene = ExtResource("2_1hd0p")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1572850394]
+position = Vector2(0, -3)
+texture = SubResource("AtlasTexture_oahsk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=365675346]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_l7elj")
+
+[node name="HurtboxComponent" parent="." unique_id=330416737 instance=ExtResource("2_oahsk")]
+
+[node name="CollisionShape2D" parent="HurtboxComponent" index="0" unique_id=1993016751]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_oahsk")
+
+[editable path="HurtboxComponent"]

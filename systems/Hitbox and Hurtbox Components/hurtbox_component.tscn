@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://p3eg848tu85"]
 
+[ext_resource type="Script" uid="uid://dvfr8bx1i3waw" path="res://systems/Hitbox and Hurtbox Components/hurtbox_component.gd" id="1_lnly8"]
+
 [node name="HurtboxComponent" type="Area2D" unique_id=330416737]
-collision_layer = 0
+collision_layer = 4
 collision_mask = 0
+script = ExtResource("1_lnly8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1993016751]
 debug_color = Color(0, 0.6509804, 0.09803922, 0)

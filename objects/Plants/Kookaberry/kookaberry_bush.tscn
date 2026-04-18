@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://bjie0n3gg0i2y"]
+
+[ext_resource type="Script" uid="uid://d3t24jjc1k71t" path="res://objects/Plants/Kookaberry/kookaberry_bush.gd" id="1_i4l2f"]
+[ext_resource type="Texture2D" uid="uid://dnxvkfesntpyr" path="res://game_assets/assets.png" id="1_uw5v6"]
+[ext_resource type="PackedScene" uid="uid://csaelec8vx46t" path="res://objects/Fruit/Resource/resource.tscn" id="2_oyvdp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i4l2f"]
+atlas = ExtResource("1_uw5v6")
+region = Rect2(32, 48, 32, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oyvdp"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i4l2f"]
+radius = 48.0
+
+[node name="KookaberryBush" type="StaticBody2D" unique_id=2068413751]
+script = ExtResource("1_i4l2f")
+resource_scene = ExtResource("2_oyvdp")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=361305954]
+position = Vector2(0, -7)
+texture = SubResource("AtlasTexture_i4l2f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1676525299]
+shape = SubResource("CircleShape2D_oyvdp")
+
+[node name="InteractionArea" type="Area2D" parent="." unique_id=1598080351]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=270721445]
+shape = SubResource("CircleShape2D_i4l2f")
+debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]

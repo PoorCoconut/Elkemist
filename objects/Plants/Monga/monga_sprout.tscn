@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://chuxpw8k34fge"]
+
+[ext_resource type="Script" uid="uid://comlf0nkr3ra0" path="res://objects/Plants/Monga/monga_sprout.gd" id="1_wqrsx"]
+[ext_resource type="PackedScene" uid="uid://csaelec8vx46t" path="res://objects/Fruit/Resource/resource.tscn" id="2_7ky55"]
+[ext_resource type="Texture2D" uid="uid://dnxvkfesntpyr" path="res://game_assets/assets.png" id="2_euw2r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ky55"]
+atlas = ExtResource("2_euw2r")
+region = Rect2(80, 64, 16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sk28i"]
+radius = 40.0
+
+[node name="MongaSprout" type="Area2D" unique_id=1846682392]
+collision_mask = 2
+script = ExtResource("1_wqrsx")
+resource_scene = ExtResource("2_7ky55")
+
+[node name="Node" type="Sprite2D" parent="." unique_id=1005661588]
+position = Vector2(0, -2)
+texture = SubResource("AtlasTexture_7ky55")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1852811407]
+shape = SubResource("CircleShape2D_sk28i")
+debug_color = Color(0, 0.6, 0.69803923, 0)
