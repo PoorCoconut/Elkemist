@@ -2,17 +2,17 @@
 
 [ext_resource type="Script" uid="uid://cu4cmygusntwq" path="res://globals/Music Manager/music_manager.gd" id="1_kwnxt"]
 [ext_resource type="Script" uid="uid://ok7aycfrhu2f" path="res://systems/Custom Music Track Resource/MusicTrack.gd" id="2_cfotr"]
-[ext_resource type="AudioStream" uid="uid://blottv1kw84ib" path="res://sound/music/Brew Panacea - Multitrack wav/AmbienceBG-new.wav" id="3_1oab0"]
-[ext_resource type="AudioStream" uid="uid://c0r28x2kig420" path="res://sound/music/Brew Panacea - Multitrack wav/Chords-new.wav" id="4_2hrvq"]
-[ext_resource type="AudioStream" uid="uid://dgqwqxeg1dovv" path="res://sound/music/Brew Panacea - Multitrack wav/Melody-new.wav" id="5_rlx5c"]
-[ext_resource type="AudioStream" uid="uid://johvbpbic8mq" path="res://sound/music/Brew Panacea - Multitrack wav/Melody Threat.wav" id="6_leqai"]
-[ext_resource type="AudioStream" uid="uid://c4mrcmn7imips" path="res://sound/music/Brew Panacea - Multitrack wav/Percussion-new.wav" id="7_leqai"]
-[ext_resource type="AudioStream" uid="uid://dvotp4gnsuhdk" path="res://sound/music/Brew Panacea - Multitrack wav/Super Nice Drums-new.wav" id="8_edcgs"]
+[ext_resource type="AudioStream" uid="uid://cv4eglaxdqcr7" path="res://sound/music/Brew Panacea - MP3/AmbientBG.wav" id="3_1oab0"]
+[ext_resource type="AudioStream" uid="uid://c35rs1jbjpc8n" path="res://sound/music/Brew Panacea - MP3/Chords.wav" id="4_2hrvq"]
+[ext_resource type="AudioStream" uid="uid://cns4kc4rfts0s" path="res://sound/music/Brew Panacea - MP3/Melody .wav" id="5_rlx5c"]
+[ext_resource type="AudioStream" uid="uid://bm0p52tl1rn1p" path="res://sound/music/Brew Panacea - MP3/Melody-Threat.wav" id="6_1oab0"]
+[ext_resource type="AudioStream" uid="uid://d1xrnpnv1yow6" path="res://sound/music/Brew Panacea - MP3/Percussion .wav" id="7_edcgs"]
+[ext_resource type="AudioStream" uid="uid://i8wqvvdrjuov" path="res://sound/music/Brew Panacea - MP3/Super Nice Drums.wav" id="8_uvhfi"]
 
 [sub_resource type="Resource" id="Resource_cfotr"]
 script = ExtResource("2_cfotr")
 track_name = "Panacea"
-stems = Array[AudioStream]([ExtResource("3_1oab0"), ExtResource("4_2hrvq"), ExtResource("5_rlx5c"), ExtResource("6_leqai"), ExtResource("7_leqai"), ExtResource("8_edcgs")])
+stems = Array[AudioStream]([ExtResource("3_1oab0"), ExtResource("4_2hrvq"), ExtResource("5_rlx5c"), ExtResource("6_1oab0"), ExtResource("7_edcgs"), ExtResource("8_uvhfi")])
 metadata/_custom_type_script = "uid://ok7aycfrhu2f"
 
 [node name="MusicManager" type="Node" unique_id=1495717072]

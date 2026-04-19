@@ -191,7 +191,6 @@ theme_override_constants/separation = 14
 
 [node name="Label" type="Label" parent="SettingsContainer/SettingsTabs/GeneralSettings/VBoxContainer/MasterVolume" unique_id=88844148]
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
 text = "Master"
 
 [node name="Slider_MaVol" type="HSlider" parent="SettingsContainer/SettingsTabs/GeneralSettings/VBoxContainer/MasterVolume" unique_id=637964225]
@@ -207,7 +206,6 @@ theme_override_constants/separation = 19
 
 [node name="Label" type="Label" parent="SettingsContainer/SettingsTabs/GeneralSettings/VBoxContainer/MusicVolume" unique_id=1012630994]
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
 text = "Music"
 
 [node name="Slider_MuVol" type="HSlider" parent="SettingsContainer/SettingsTabs/GeneralSettings/VBoxContainer/MusicVolume" unique_id=1222097655]
@@ -223,7 +221,6 @@ theme_override_constants/separation = 28
 
 [node name="Label" type="Label" parent="SettingsContainer/SettingsTabs/GeneralSettings/VBoxContainer/SFXVolume" unique_id=1136966587]
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
 text = "SFX"
 
 [node name="Slider_SVol" type="HSlider" parent="SettingsContainer/SettingsTabs/GeneralSettings/VBoxContainer/SFXVolume" unique_id=1461787990]
@@ -285,7 +282,6 @@ theme_override_constants/separation = 19
 
 [node name="Label" type="Label" parent="SettingsContainer/SettingsTabs/ViewportSettings/VBoxContainer/ScreenResolution" unique_id=495751952]
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
 text = "Screen Resolution"
 
 [node name="ScreenResAccordion2" type="FoldableContainer" parent="SettingsContainer/SettingsTabs/ViewportSettings/VBoxContainer/ScreenResolution" unique_id=1578316268]
@@ -298,17 +294,14 @@ layout_mode = 2
 
 [node name="Button_1080p" type="Button" parent="SettingsContainer/SettingsTabs/ViewportSettings/VBoxContainer/ScreenResolution/ScreenResAccordion2/VBoxContainer" unique_id=1520860721]
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
 text = "1980x1080"
 
 [node name="Button_720p" type="Button" parent="SettingsContainer/SettingsTabs/ViewportSettings/VBoxContainer/ScreenResolution/ScreenResAccordion2/VBoxContainer" unique_id=1963271185]
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
 text = "1280x720"
 
 [node name="Button_540p" type="Button" parent="SettingsContainer/SettingsTabs/ViewportSettings/VBoxContainer/ScreenResolution/ScreenResAccordion2/VBoxContainer" unique_id=976220345]
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
 text = "990x540"
 
 [node name="WindowMode" type="HBoxContainer" parent="SettingsContainer/SettingsTabs/ViewportSettings/VBoxContainer" unique_id=463611335]
@@ -317,7 +310,6 @@ theme_override_constants/separation = 14
 
 [node name="Label" type="Label" parent="SettingsContainer/SettingsTabs/ViewportSettings/VBoxContainer/WindowMode" unique_id=1182272754]
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
 text = "Window Mode"
 
 [node name="WindowModeAccordion" type="FoldableContainer" parent="SettingsContainer/SettingsTabs/ViewportSettings/VBoxContainer/WindowMode" unique_id=1854593696]
@@ -330,17 +322,14 @@ layout_mode = 2
 
 [node name="Button_Windowed" type="Button" parent="SettingsContainer/SettingsTabs/ViewportSettings/VBoxContainer/WindowMode/WindowModeAccordion/VBoxContainer" unique_id=1876477194]
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
 text = "WINDOWED"
 
 [node name="Button_Fullscreen" type="Button" parent="SettingsContainer/SettingsTabs/ViewportSettings/VBoxContainer/WindowMode/WindowModeAccordion/VBoxContainer" unique_id=976583148]
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
 text = "FULLSCREEN"
 
 [node name="Button_ExclusiveFullscreen" type="Button" parent="SettingsContainer/SettingsTabs/ViewportSettings/VBoxContainer/WindowMode/WindowModeAccordion/VBoxContainer" unique_id=1864238956]
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
 text = "EXCLUSIVE FULLSCREEN"
 
 [node name="ControlsSettings" type="MarginContainer" parent="SettingsContainer/SettingsTabs" unique_id=2007466088]
@@ -395,9 +384,6 @@ size_flags_horizontal = 3
 script = ExtResource("2_c5njb")
 action_name = "move_up"
 bind_index = 1
-allow_keyboard = false
-allow_mouse = false
-allow_joypad = false
 
 [node name="MoveDown" type="Label" parent="SettingsContainer/SettingsTabs/ControlsSettings/VBoxContainer/ScrollContainer/RebindContainer" unique_id=857840880]
 layout_mode = 2
@@ -448,6 +434,108 @@ layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("2_c5njb")
 action_name = "move_right"
+bind_index = 1
+
+[node name="Dash" type="Label" parent="SettingsContainer/SettingsTabs/ControlsSettings/VBoxContainer/ScrollContainer/RebindContainer" unique_id=1109373703]
+layout_mode = 2
+text = "Dash"
+
+[node name="PrimaryDash" type="Button" parent="SettingsContainer/SettingsTabs/ControlsSettings/VBoxContainer/ScrollContainer/RebindContainer" unique_id=73231240]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_c5njb")
+action_name = "dash"
+
+[node name="SecondaryDash" type="Button" parent="SettingsContainer/SettingsTabs/ControlsSettings/VBoxContainer/ScrollContainer/RebindContainer" unique_id=1270113298]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_c5njb")
+action_name = "dash"
+bind_index = 1
+
+[node name="Interact" type="Label" parent="SettingsContainer/SettingsTabs/ControlsSettings/VBoxContainer/ScrollContainer/RebindContainer" unique_id=955082124]
+layout_mode = 2
+text = "Interact"
+
+[node name="PrimaryInteract" type="Button" parent="SettingsContainer/SettingsTabs/ControlsSettings/VBoxContainer/ScrollContainer/RebindContainer" unique_id=1334310280]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_c5njb")
+action_name = "interact"
+
+[node name="SecondaryInteract" type="Button" parent="SettingsContainer/SettingsTabs/ControlsSettings/VBoxContainer/ScrollContainer/RebindContainer" unique_id=1472273541]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_c5njb")
+action_name = "interact"
+bind_index = 1
+
+[node name="Inventory1" type="Label" parent="SettingsContainer/SettingsTabs/ControlsSettings/VBoxContainer/ScrollContainer/RebindContainer" unique_id=963511436]
+layout_mode = 2
+text = "Inventory 1"
+
+[node name="PrimaryInv1" type="Button" parent="SettingsContainer/SettingsTabs/ControlsSettings/VBoxContainer/ScrollContainer/RebindContainer" unique_id=1225536730]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_c5njb")
+action_name = "inv1"
+
+[node name="SecondaryInv1" type="Button" parent="SettingsContainer/SettingsTabs/ControlsSettings/VBoxContainer/ScrollContainer/RebindContainer" unique_id=1865525136]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_c5njb")
+action_name = "inv1"
+bind_index = 1
+
+[node name="Inventory2" type="Label" parent="SettingsContainer/SettingsTabs/ControlsSettings/VBoxContainer/ScrollContainer/RebindContainer" unique_id=1697949256]
+layout_mode = 2
+text = "Inventory 2"
+
+[node name="PrimaryInv2" type="Button" parent="SettingsContainer/SettingsTabs/ControlsSettings/VBoxContainer/ScrollContainer/RebindContainer" unique_id=369282386]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_c5njb")
+action_name = "inv2"
+
+[node name="SecondaryInv2" type="Button" parent="SettingsContainer/SettingsTabs/ControlsSettings/VBoxContainer/ScrollContainer/RebindContainer" unique_id=2084681647]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_c5njb")
+action_name = "inv2"
+bind_index = 1
+
+[node name="Inventory3" type="Label" parent="SettingsContainer/SettingsTabs/ControlsSettings/VBoxContainer/ScrollContainer/RebindContainer" unique_id=1278724125]
+layout_mode = 2
+text = "Inventory 3"
+
+[node name="PrimaryInv3" type="Button" parent="SettingsContainer/SettingsTabs/ControlsSettings/VBoxContainer/ScrollContainer/RebindContainer" unique_id=867633166]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_c5njb")
+action_name = "inv3"
+
+[node name="SecondaryInv3" type="Button" parent="SettingsContainer/SettingsTabs/ControlsSettings/VBoxContainer/ScrollContainer/RebindContainer" unique_id=1323635036]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_c5njb")
+action_name = "inv3"
+bind_index = 1
+
+[node name="Inventory4" type="Label" parent="SettingsContainer/SettingsTabs/ControlsSettings/VBoxContainer/ScrollContainer/RebindContainer" unique_id=823424409]
+layout_mode = 2
+text = "Inventory 4"
+
+[node name="PrimaryInv4" type="Button" parent="SettingsContainer/SettingsTabs/ControlsSettings/VBoxContainer/ScrollContainer/RebindContainer" unique_id=629395555]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_c5njb")
+action_name = "inv4"
+
+[node name="SecondaryInv4" type="Button" parent="SettingsContainer/SettingsTabs/ControlsSettings/VBoxContainer/ScrollContainer/RebindContainer" unique_id=855900713]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_c5njb")
+action_name = "inv4"
 bind_index = 1
 
 [node name="Control" type="Control" parent="SettingsContainer/SettingsTabs/ControlsSettings/VBoxContainer" unique_id=1931820873]
