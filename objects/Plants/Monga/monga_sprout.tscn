@@ -17,9 +17,10 @@ script = ExtResource("1_wqrsx")
 resource_scene = ExtResource("2_7ky55")
 
 [node name="Node" type="Sprite2D" parent="." unique_id=1005661588]
-position = Vector2(0, -2)
+position = Vector2(0, -8)
 texture = SubResource("AtlasTexture_7ky55")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1852811407]
+position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_sk28i")
 debug_color = Color(0, 0.6, 0.69803923, 0)

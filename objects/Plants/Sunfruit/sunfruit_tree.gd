@@ -11,6 +11,7 @@ func _ready() -> void:
 		hurtbox.on_hit_received.connect(_on_dash_hit)
 
 func _on_dash_hit(_knockback: float, direction: Vector2, attacker: Node2D) -> void:
+	GameManager.do_camera_shake(2.0, 0.5)
 	# 1. Spawn the fruit
 	drop_fruit()
 	

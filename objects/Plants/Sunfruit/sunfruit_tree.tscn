@@ -13,20 +13,22 @@ region = Rect2(0, 32, 32, 48)
 radius = 5.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4uter"]
-radius = 16.0
+radius = 22.022715
 
 [node name="SunfruitTree" type="StaticBody2D" unique_id=1721242678]
 script = ExtResource("1_0dwmr")
 resource_scene = ExtResource("2_4uter")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=756536236]
-position = Vector2(0, -16)
+position = Vector2(0, -24)
 texture = SubResource("AtlasTexture_ggvw0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1110676623]
+position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_0dwmr")
 
 [node name="HurtboxComponent" parent="." unique_id=330416737 instance=ExtResource("2_ggvw0")]
+position = Vector2(0, -8)
 
 [node name="CollisionShape2D" parent="HurtboxComponent" index="0" unique_id=1993016751]
 shape = SubResource("CircleShape2D_4uter")

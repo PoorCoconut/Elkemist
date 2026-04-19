@@ -1,0 +1,44 @@
+name: Export and Deploy to Itch.io
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  GODOT_VERSION: 4.6.2
+  EXPORT_NAME: elkemy-windows-build
+
+jobs:
+  export-windows:
+    name: Windows Export
+    runs-on: ubuntu-20.04
+    container:
+      image: barichello/godot-ci:4.6.2
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Setup Export Templates
+        run: |
+          mkdir -v -p ~/.local/share/godot/export_templates
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+
+      - name: Windows Build
+        run: |
+          mkdir -v -p build/windows
+          godot --headless --export-release "Windows Desktop" build/windows/$EXPORT_NAME.exe
+
+      - name: Deploy to Itch.io via Butler
+        uses: josephbmanley/butler-publish-itchio-action@master
+        env:
+          # This now matches your exact GitHub secret name
+          BUTLER_CREDENTIALS: ${{ secrets.ITCHIO_API_KEY }} 
+          CHANNEL: windows
+          # These are now hardcoded directly
+          ITCH_GAME: elkemy 
+          ITCH_USER: poorcoco 
+        with:
+          build_dir: build/windows

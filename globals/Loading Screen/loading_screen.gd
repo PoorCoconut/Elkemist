@@ -1,42 +1,52 @@
 extends CanvasLayer
 
-@onready var progress_bar = $LoadingBar
 var target_scene_path : String = ""
 
 func _ready():
 	hide()
 	set_process(false) # Turn off _process so it isn't constantly running in the background
-	progress_bar.value = 0.0
 
 # Call this function when you want to load a level
 func load_level(path: String):
 	target_scene_path = path
+	
+	# --- RANDOM FRAME LOGIC ---
+	# Calculate the total frames based on your Inspector grid settings
+	var total_frames = %PotionSprite.hframes * %PotionSprite.vframes
+	
+	# Pick a random frame between 0 and (total_frames - 1)
+	var random_frame = randi() % total_frames
+	
+	# If the frame lands on a banned number, reroll until it doesn't
+	while random_frame in [1, 2, 14]:
+		random_frame = randi() % total_frames
+		
+	%PotionSprite.frame = random_frame
+	
+	# --- END RANDOM FRAME LOGIC ---
+	
 	show() # Make the loading screen visible
 	
 	# Ask Godot's background thread to start building the scene
 	ResourceLoader.load_threaded_request(target_scene_path)
 	
-	# Turn on _process so we can monitor the progress bar
+	# Turn on _process so we can monitor the load status
 	set_process(true)
 
 func _process(_delta):
-	##LOADING SCREEN
-	var progress_array = [] #pass an empty array to fill it with progress number
-	var status = ResourceLoader.load_threaded_get_status(target_scene_path, progress_array) # Ask the ResourceLoader what the current status is
+	# Ask the ResourceLoader what the current status is (no progress array needed)
+	var status = ResourceLoader.load_threaded_get_status(target_scene_path) 
 	
-	# progress_array[0] returns a decimal between 0.0 and 1.0. 
-	# Multiply by 100 to get a normal percentage for the ProgressBar
-	if progress_array.size() > 0:
-		progress_bar.value = progress_array[0] * 100
-	
-	if status == ResourceLoader.THREAD_LOAD_LOADED: # Check if the background thread has finished building the scene
+	if status == ResourceLoader.THREAD_LOAD_LOADED: # Background thread finished building
 		set_process(false)
-		#Grab the fully built scene from the background thread
+		
+		# Grab the fully built scene from the background thread
 		var new_scene = ResourceLoader.load_threaded_get(target_scene_path)
-		#Swap scenes from X to Y
+		
+		# Swap scenes
 		get_tree().change_scene_to_packed(new_scene)
 		
-		#Hide loading screen
+		# Hide loading screen and run transition
 		hide()
 		await get_tree().process_frame
 		await get_tree().process_frame

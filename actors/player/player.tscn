@@ -34,17 +34,28 @@ collision_layer = 2
 dash_hitbox = NodePath("HitboxComponent")
 
 [node name="Sprite" parent="." index="0" unique_id=86260587]
+position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_dgs04")
 offset = Vector2(0, -10)
 
+[node name="Collision" parent="." index="1" unique_id=438437244]
+position = Vector2(0, -6)
+
 [node name="DebugStateLabel" parent="." index="2" unique_id=1664998739]
 unique_name_in_owner = true
+visible = false
 
-[node name="CollisionShape2D" parent="HitboxComponent" parent_id_path=PackedInt32Array(1755790887) index="0" unique_id=939226382]
+[node name="HitboxComponent" parent="." index="3" unique_id=1755790887]
+position = Vector2(0, -6)
+
+[node name="CollisionShape2D" parent="HitboxComponent" index="0" unique_id=939226382]
 shape = SubResource("CircleShape2D_15y17")
 disabled = true
 
-[node name="CollisionShape2D" parent="HurtboxComponent" parent_id_path=PackedInt32Array(330416737) index="0" unique_id=1993016751]
+[node name="HurtboxComponent" parent="." index="4" unique_id=330416737]
+position = Vector2(0, -6)
+
+[node name="CollisionShape2D" parent="HurtboxComponent" index="0" unique_id=1993016751]
 shape = SubResource("CircleShape2D_bop6h")
 
 [node name="FSM" type="Node" parent="." index="5" unique_id=2121594947 node_paths=PackedStringArray("initial_state")]

@@ -19,10 +19,7 @@ func enterState():
 	
 	var current_input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	
-	if current_input != Vector2.ZERO:
-		dash_direction = current_input.normalized()
-	else:
-		dash_direction = PLAYER.global_position.direction_to(PLAYER.get_global_mouse_position())
+	dash_direction = PLAYER.global_position.direction_to(PLAYER.get_global_mouse_position())
 	
 	PLAYER.velocity = dash_direction * dash_speed
 

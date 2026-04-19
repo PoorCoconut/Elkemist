@@ -19,13 +19,15 @@ script = ExtResource("1_i4l2f")
 resource_scene = ExtResource("2_oyvdp")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=361305954]
-position = Vector2(0, -7)
+position = Vector2(1, -16)
 texture = SubResource("AtlasTexture_i4l2f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1676525299]
+position = Vector2(1, -9)
 shape = SubResource("CircleShape2D_oyvdp")
 
 [node name="InteractionArea" type="Area2D" parent="." unique_id=1598080351]
+position = Vector2(1, -9)
 collision_layer = 0
 collision_mask = 2
 

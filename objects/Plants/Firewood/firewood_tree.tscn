@@ -14,22 +14,24 @@ radius = 3.0
 height = 28.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oahsk"]
-radius = 9.0
-height = 34.0
+radius = 12.0
+height = 48.0
 
 [node name="FirewoodTree" type="StaticBody2D" unique_id=1402554789]
 script = ExtResource("1_l7elj")
 resource_scene = ExtResource("2_1hd0p")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1572850394]
-position = Vector2(0, -3)
+position = Vector2(0, -7)
 texture = SubResource("AtlasTexture_oahsk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=365675346]
+position = Vector2(0, -4)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_l7elj")
 
 [node name="HurtboxComponent" parent="." unique_id=330416737 instance=ExtResource("2_oahsk")]
+position = Vector2(0, -4)
 
 [node name="CollisionShape2D" parent="HurtboxComponent" index="0" unique_id=1993016751]
 rotation = 1.5707964

@@ -6,12 +6,12 @@ func _ready() -> void:
 
 func trans_in(trans_time : float = 1) -> Tween:
 	var tween = get_tree().create_tween()
-	tween.tween_property(background.material, "shader_parameter/progress", 0.5, trans_time).from(0.0).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween.tween_property(background.material, "shader_parameter/_Progress", 1.0, trans_time).from(0.0).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	return tween
 
 func trans_out(trans_time : float = 1) -> Tween:
 	var tween = get_tree().create_tween()
-	tween.tween_property(background.material, "shader_parameter/progress", 1.0, trans_time).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween.tween_property(background.material, "shader_parameter/_Progress", 0.0, trans_time).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	return tween
 
 func reset() -> void:

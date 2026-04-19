@@ -43,16 +43,20 @@ region = Rect2(48, 0, 16, 16)
 
 [node name="Cauldron" type="StaticBody2D" unique_id=1133878123]
 script = ExtResource("1_nvby6")
+fuel_drain_rate = 5.0
+brew_time_required = 5.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=830378476]
-position = Vector2(0, -8)
+position = Vector2(0, -16)
 texture = SubResource("AtlasTexture_rl6nv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1066303428]
+position = Vector2(0, -8)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_vrkcj")
 
 [node name="InteractionArea" type="Area2D" parent="." unique_id=220216122]
+position = Vector2(0, -8)
 collision_layer = 0
 collision_mask = 2
 
@@ -64,9 +68,9 @@ unique_name_in_owner = true
 visible = false
 z_index = 1
 offset_left = -64.0
-offset_top = -80.0
+offset_top = -88.0
 offset_right = 64.0
-offset_bottom = -32.0
+offset_bottom = -40.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_t5n4e")
 
 [node name="MarginContainer" type="MarginContainer" parent="CauldronUI" unique_id=361395160]
@@ -199,21 +203,25 @@ horizontal_alignment = 2
 vertical_alignment = 2
 
 [node name="Inv1Button" type="TextureButton" parent="CauldronUI/MarginContainer/HBoxContainer/GridContainer" unique_id=911303741]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Inv2Button" type="TextureButton" parent="CauldronUI/MarginContainer/HBoxContainer/GridContainer" unique_id=964551663]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Inv3Button" type="TextureButton" parent="CauldronUI/MarginContainer/HBoxContainer/GridContainer" unique_id=1633358013]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Inv4Button" type="TextureButton" parent="CauldronUI/MarginContainer/HBoxContainer/GridContainer" unique_id=650068044]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

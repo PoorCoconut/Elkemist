@@ -1,7 +1,17 @@
 [gd_scene format=3 uid="uid://camlgx74mlna4"]
 
 [ext_resource type="Script" uid="uid://b6rwu6r4il3so" path="res://game_scenes/menus/MainMenu/main_menu.gd" id="1_h6sl1"]
+[ext_resource type="Texture2D" uid="uid://dbkui3aigqqpj" path="res://game_assets/elkemy_logo.png" id="2_3phpx"]
 [ext_resource type="Script" uid="uid://cxjik30ut0s3y" path="res://systems/Rebind Button Script Module/RebindButton.gd" id="2_c5njb"]
+[ext_resource type="Texture2D" uid="uid://dnxvkfesntpyr" path="res://game_assets/assets.png" id="2_kcaeb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2ujj"]
+atlas = ExtResource("2_kcaeb")
+region = Rect2(80, 48, 16, 16)
+
+[sub_resource type="Curve" id="Curve_c5njb"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.16917294, 1), 0.0, 0.0, 0, 0, Vector2(0.46992484, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oqmwn"]
 bg_color = Color(0.18039216, 0.18039216, 0.18039216, 1)
@@ -24,25 +34,37 @@ grow_vertical = 2
 script = ExtResource("1_h6sl1")
 next_level_path = "uid://cjn4eyn404pkf"
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=29496978]
+[node name="TextureRect" type="ColorRect" parent="." unique_id=968730758]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.2784314, 0.7372549, 0.54901963, 1)
 
-[node name="GameTitle" type="RichTextLabel" parent="." unique_id=1318100979]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 128.0
-grow_horizontal = 2
-bbcode_enabled = true
-text = "ELKEMY"
-fit_content = true
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Bubbles" type="CPUParticles2D" parent="." unique_id=1884514893]
+position = Vector2(320, 360)
+amount = 100
+texture = SubResource("AtlasTexture_x2ujj")
+lifetime = 5.0
+preprocess = 2.0
+randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(500, 1)
+gravity = Vector2(0, -20)
+angular_velocity_min = -5.0
+angular_velocity_max = -5.0
+orbit_velocity_min = -0.05
+orbit_velocity_max = 0.05
+scale_amount_max = 5.0
+scale_amount_curve = SubResource("Curve_c5njb")
+color = Color(0.43529412, 0.85882354, 0.6862745, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=111194090]
+position = Vector2(336, 128)
+scale = Vector2(2, 2)
+texture = ExtResource("2_3phpx")
 
 [node name="ButtonContainerSizer" type="MarginContainer" parent="." unique_id=921923850]
 layout_mode = 1
@@ -51,9 +73,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 250
-theme_override_constants/margin_top = 100
-theme_override_constants/margin_right = 250
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 200
 theme_override_constants/margin_bottom = 10
 
 [node name="ButtonContainer" type="VBoxContainer" parent="ButtonContainerSizer" unique_id=803903837]

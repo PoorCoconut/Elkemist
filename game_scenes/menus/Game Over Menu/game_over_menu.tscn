@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://b37uy4nirtmli"]
+
+[ext_resource type="Script" uid="uid://bhgotqrgj2uds" path="res://game_scenes/menus/Game Over Menu/game_over_menu.gd" id="1_w2k85"]
+
+[sub_resource type="FontVariation" id="FontVariation_w2k85"]
+spacing_top = -5
+spacing_bottom = -10
+
+[node name="GameoverMenu" type="Control" unique_id=1028658296]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_w2k85")
+next_level_path = "uid://camlgx74mlna4"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1516659583]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="GameOver" type="RichTextLabel" parent="." unique_id=1977068499]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = SubResource("FontVariation_w2k85")
+theme_override_font_sizes/normal_font_size = 80
+bbcode_enabled = true
+text = "[wave]GAME OVER[/wave]
+[shake rate=7.0][font_size=32]You ran out of fuel![/font_size]
+
+
+[font_size=32]Press any button to go back to Menu[/font_size]"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1

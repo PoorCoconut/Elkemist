@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c4mrcmn7imips"
+path="res://.godot/imported/Percussion-new.wav-4057cf5f1ec7e6e51f1e6fe5ef16e098.sample"
+
+[deps]
+
+source_file="res://sound/music/Brew Panacea - Multitrack wav/Percussion-new.wav"
+dest_files=["res://.godot/imported/Percussion-new.wav-4057cf5f1ec7e6e51f1e6fe5ef16e098.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=1
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

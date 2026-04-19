@@ -50,3 +50,19 @@ func apply_knockback(direction: Vector2, force: float, duration: float):
 		# We loop through the FSM's children to find which state is currently active
 		for state in fsm.get_children():
 			$FSM.force_change_state("Knockback")
+
+func update_facing_direction() -> void:
+	var sprite = $Sprite
+	
+	if sprite:
+		# Since your base art faces LEFT:
+		# Moving right (positive X) means we need to flip it.
+		if CUR_DIR.x > 0:
+			sprite.flip_h = true
+		# Moving left (negative X) means we return to the default art.
+		elif CUR_DIR.x < 0:
+			sprite.flip_h = false
+		# If CUR_DIR.x == 0, we do nothing, letting the Elk stay facing its last direction.
+
+func _physics_process(delta: float) -> void:
+	update_facing_direction()

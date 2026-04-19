@@ -21,36 +21,48 @@ func change_music(track_name: String, crossfade_time: float = 2.0) -> void:
 		push_error("MusicManager: Track '" + track_name + "' not found!")
 		return
 	if current_track_name == safe_name:
-		return # Already playing this track!
+		return 
 		
 	current_track_name = safe_name
 	var new_track: MusicTrack = track_db[safe_name]
 	
-	# 1. Move current players to the chopping block
 	var fading_players = active_players.duplicate()
 	active_players.clear()
 	
 	var tween = create_tween()
 	
-	# 2. Fade out the old track and delete the players when done
 	for player in fading_players:
 		tween.parallel().tween_property(player, "volume_db", -80.0, crossfade_time)
 	tween.tween_callback(func(): _cleanup_players(fading_players))
 	
-	# 3. Spin up new players for the new track's stems
+	# Variables to track our Master Sync
+	var longest_duration: float = 0.0
+	var master_player: AudioStreamPlayer = null
+	
 	for i in range(new_track.stems.size()):
 		var player = AudioStreamPlayer.new()
 		player.stream = new_track.stems[i]
-		player.volume_db = -80.0 # Start completely silent
-		player.bus = "Music" # IMPORTANT: Routes to your Master/Music audio bus!
+		player.volume_db = -80.0 
+		player.bus = "Music" 
 		
 		add_child(player)
 		player.play()
 		active_players.append(player)
 		
-		# Figure out how loud this specific layer should be based on current intensity
 		var target_vol = _get_layer_volume(i, new_track.stems.size(), current_intensity)
 		tween.parallel().tween_property(player, "volume_db", target_vol, crossfade_time)
+		
+		# Check if this track is the longest one we've seen so far
+		var current_length = player.stream.get_length()
+		if current_length > longest_duration:
+			longest_duration = current_length
+			master_player = player
+			
+	# Connect the longest track to our custom looping function
+	if master_player:
+		master_player.finished.connect(_on_master_track_finished)
+
+
 
 # Call this to raise/lower the music tension (e.g., set_intensity(0.8))
 func set_intensity(new_intensity: float, fade_time: float = 1.0) -> void:
@@ -101,3 +113,9 @@ func stop_music(fade_out_time: float = 2.0) -> void:
 		
 	#Delete the audio nodes once the fade-out is complete
 	tween.tween_callback(func(): _cleanup_players(fading_players))
+
+# ADD THIS NEW FUNCTION AT THE BOTTOM OF YOUR SCRIPT
+func _on_master_track_finished() -> void:
+	# When the longest track ends, immediately restart all active players from 0.0
+	for player in active_players:
+		player.play(0.0)

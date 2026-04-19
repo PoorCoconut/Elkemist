@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://rgy5yu73bm2h"]
 
 [ext_resource type="Script" uid="uid://oeud7pq48ynf" path="res://globals/Screen Transition/screen_transition.gd" id="1_i4ufd"]
-[ext_resource type="Shader" uid="uid://cayfnbqnbndvi" path="res://vfx/shaders/screen_trans_diamond.gdshader" id="2_klng5"]
+[ext_resource type="Shader" uid="uid://bs5n83y8w63yj" path="res://globals/Screen Transition/circle_transition.gdshader" id="2_dy5ew"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_se8wf"]
-shader = ExtResource("2_klng5")
-shader_parameter/progress = 0.0
-shader_parameter/diamondPixelSize = 50.0
+shader = ExtResource("2_dy5ew")
+shader_parameter/_CirclePosition = Vector2(0.5, 0.5)
+shader_parameter/_Progress = 0.0
+shader_parameter/_Smoothness = 0.0
+shader_parameter/_Background = Color(0, 0, 0, 1)
 
 [node name="ScreenTransition" type="CanvasLayer" unique_id=1394423562]
 script = ExtResource("1_i4ufd")
