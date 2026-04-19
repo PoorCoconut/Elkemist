@@ -44,11 +44,35 @@ func _ready() -> void:
 	update_ui()
 
 func _process(delta: float) -> void:
+	var large_on = false
+	var medium_on = false
+	var small_on = false
+	
+	# Decide which ONE fire should be burning
+	if current_fuel > 50:
+		large_on = true
+	elif current_fuel > 25:
+		medium_on = true
+	elif current_fuel > 0:
+		small_on = true
+		
+	# Apply the states. 
+	# If a fire turns off, its existing sparks will naturally fade out.
+	if %FireLarge.emitting != large_on:
+		%FireLarge.emitting = large_on
+		
+	if %FireMedium.emitting != medium_on:
+		%FireMedium.emitting = medium_on
+		
+	if %FireSmall.emitting != small_on:
+		%FireSmall.emitting = small_on
+	
 	# 1. Drain the fuel
 	if current_fuel > 0:
-		current_fuel -= fuel_drain_rate * delta
+		current_fuel -= (fuel_drain_rate * GameManager.fuel_drain_modifier) * delta
 		if current_fuel <= 0:
 			current_fuel = 0.0
+			SoundBank.play_global_sfx("death")
 			GameManager.load_next_level("res://game_scenes/menus/Game Over Menu/game_over_menu.tscn")
 	
 	# 2. Progress the brew ONLY if the fire is lit
@@ -133,8 +157,11 @@ func try_add_ingredient(item_name: String) -> void:
 	if GameManager.consume_ingredient(item_name):
 		brew_buffer.append(item_name)
 		
+		
+		
 		# If two items are in, start the clock
 		if brew_buffer.size() == 2:
+			%BrewingParticles.emitting = true
 			is_brewing = true
 			current_brew_time = 0.0
 
@@ -148,14 +175,17 @@ func try_add_potion(slot_index: int) -> void:
 		# Replace with an empty string instead of null
 		GameManager.potions[slot_index] = "" 
 		
+		
 		brew_buffer.append(potion_name)
 		GameManager.inventory_updated.emit()
 		
 		if brew_buffer.size() == 2:
+			%BrewingParticles.emitting = true
 			is_brewing = true
 			current_brew_time = 0.0
 
 func finish_brew() -> void:
+	%BrewingParticles.emitting = false
 	is_brewing = false
 	var item_1 = brew_buffer[0]
 	var item_2 = brew_buffer[1]
@@ -178,14 +208,24 @@ func finish_brew() -> void:
 			added_to_hotbar = true
 			GameManager.inventory_updated.emit() 
 			print("Successfully brewed and stored: ", resulting_potion)
+			
+			if "potion_panacea" in GameManager.potions:
+				trigger_victory()
 			break
 			
+	SoundBank.play_global_sfx("brew_done")
+	
 	if not added_to_hotbar:
 		print("Inventory full! " + resulting_potion + " dropped on the ground.")
+
+func trigger_victory() -> void:
+	SoundBank.play_global_sfx("death")
+	GameManager.load_next_level("res://game_scenes/menus/Win Menu/win_menu.tscn")
 
 ##UI STUFF
 
 func _on_fuel_pressed() -> void:
+	SoundBank.play_global_sfx("button")
 	# Only consume firewood if the fuel isn't completely maxed out
 	if current_fuel < max_fuel:
 		if GameManager.consume_ingredient("firewood"):
@@ -194,26 +234,34 @@ func _on_fuel_pressed() -> void:
 
 # --- RAW INGREDIENT BUTTONS ---
 func _on_sunfruit_button_pressed() -> void:
+	SoundBank.play_global_sfx("button")
 	try_add_ingredient("sunfruit")
 
 func _on_kookaberry_button_pressed() -> void:
+	SoundBank.play_global_sfx("button")
 	try_add_ingredient("kookaberry")
 
 func _on_spicetooth_button_pressed() -> void:
+	SoundBank.play_global_sfx("button")
 	try_add_ingredient("spicetooth")
 
 func _on_monga_button_pressed() -> void:
+	SoundBank.play_global_sfx("button")
 	try_add_ingredient("monga")
 
 # --- POTION INVENTORY BUTTONS ---
 func _on_inv_1_button_pressed() -> void:
+	SoundBank.play_global_sfx("button")
 	try_add_potion(0)
 
 func _on_inv_2_button_pressed() -> void:
+	SoundBank.play_global_sfx("button")
 	try_add_potion(1)
 
 func _on_inv_3_button_pressed() -> void:
+	SoundBank.play_global_sfx("button")
 	try_add_potion(2)
 
 func _on_inv_4_button_pressed() -> void:
+	SoundBank.play_global_sfx("button")
 	try_add_potion(3)

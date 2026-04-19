@@ -1,0 +1,148 @@
+[gd_scene format=3 uid="uid://br42f0r2gg7qm"]
+
+[ext_resource type="Script" uid="uid://bwn3d1wt7hx5j" path="res://game_scenes/menus/Win Menu/win_menu.gd" id="1_p4ye6"]
+[ext_resource type="Texture2D" uid="uid://rmysq0h5witn" path="res://game_assets/potions/potions.png" id="2_j67p1"]
+[ext_resource type="Texture2D" uid="uid://dnxvkfesntpyr" path="res://game_assets/assets.png" id="3_4shtq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54sby"]
+atlas = ExtResource("3_4shtq")
+region = Rect2(80, 48, 16, 16)
+
+[sub_resource type="Curve" id="Curve_4shtq"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.12030075, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Animation" id="Animation_54sby"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panacea:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panacea:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5, 5)]
+}
+
+[sub_resource type="Animation" id="Animation_4shtq"]
+resource_name = "shake"
+length = 4.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panacea:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.08726646, 0.0, 0.08726646]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panacea:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(5, 5), Vector2(5.5, 5.5), Vector2(5, 5), Vector2(4.5, 4.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_54sby"]
+_data = {
+&"RESET": SubResource("Animation_54sby"),
+&"shake": SubResource("Animation_4shtq")
+}
+
+[node name="WinMenu" type="Control" unique_id=1675691766]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p4ye6")
+next_level_path = "uid://camlgx74mlna4"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=535207750]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.60784316, 0, 1, 1)
+
+[node name="Potions" type="Sprite2D" parent="." unique_id=1913690366]
+position = Vector2(700, 198)
+texture = ExtResource("2_j67p1")
+
+[node name="Particles" type="CPUParticles2D" parent="." unique_id=177606196]
+position = Vector2(320, 200)
+amount = 100
+texture = SubResource("AtlasTexture_54sby")
+lifetime = 3.0
+preprocess = 1.1400000000000001
+randomness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_amount_max = 5.0
+scale_amount_curve = SubResource("Curve_4shtq")
+color = Color(1, 0.43529412, 0.9764706, 1)
+
+[node name="Panacea" type="Sprite2D" parent="." unique_id=476165054]
+position = Vector2(320.00003, 191.99998)
+scale = Vector2(5, 5)
+texture = ExtResource("2_j67p1")
+hframes = 3
+vframes = 5
+frame = 13
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=694048402]
+layout_mode = 0
+offset_top = 72.0
+offset_right = 640.0
+offset_bottom = 128.0
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[wave]YOU BREWED PANACEA!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="." unique_id=270389076]
+layout_mode = 0
+offset_top = 304.0
+offset_right = 640.0
+offset_bottom = 360.0
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[wave]Click any button to go back to Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1372876800]
+libraries/ = SubResource("AnimationLibrary_54sby")
+autoplay = &"shake"

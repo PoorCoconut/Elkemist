@@ -31,6 +31,7 @@ func _on_body_exited(body: Node2D) -> void:
 		target_player = null
 
 func detonate_and_harvest() -> void:
+	SoundBank.play_sfx("explosion", global_position)
 	GameManager.do_camera_shake(4.0, 0.5)
 	has_spicetooth = false
 	

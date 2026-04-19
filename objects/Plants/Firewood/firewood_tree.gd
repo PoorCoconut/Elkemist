@@ -22,10 +22,12 @@ func _on_dash_hit(_knockback: float, direction: Vector2, attacker: Node2D) -> vo
 		attacker.apply_knockback(bounce_dir, 300.0, 0.15)
 	
 	# 3. Instantly remove the tree
+	SoundBank.play_global_sfx("wood_gone")
 	queue_free()
 
 func drop_wood() -> void:
 	if resource_scene:
+		
 		var drop = resource_scene.instantiate()
 		
 		# Set the enum specifically to FIREWOOD

@@ -42,6 +42,11 @@ func _ready() -> void:
 	
 	# Force an initial draw on startup
 	update_ui()
+	
+	GameManager.active_potions_changed.connect(update_active_potions_ui)
+	
+	# Force clear it on startup
+	%PotionName.text = ""
 
 func update_progress_bars() -> void:
 	# Access them directly and apply the GameManager values
@@ -98,3 +103,17 @@ func update_ui() -> void:
 			hotbar_slots[i].modulate.a = 1.0 
 		else:
 			hotbar_slots[i].texture = null
+
+func update_active_potions_ui() -> void:
+	if GameManager.active_potions.is_empty():
+		%PotionName.text = ""
+		return
+		
+	var display_names = []
+	for potion in GameManager.active_potions:
+		# This strips the "potion_" prefix and capitalizes the word (e.g. "Slop")
+		var clean_name = potion.replace("potion_", "").capitalize()
+		display_names.append(clean_name)
+		
+	# Join them with a comma so multiple potions look like: "Swiftness, Guarding"
+	%PotionName.text = ", ".join(display_names)

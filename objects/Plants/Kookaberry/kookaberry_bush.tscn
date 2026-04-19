@@ -3,16 +3,59 @@
 [ext_resource type="Script" uid="uid://d3t24jjc1k71t" path="res://objects/Plants/Kookaberry/kookaberry_bush.gd" id="1_i4l2f"]
 [ext_resource type="Texture2D" uid="uid://dnxvkfesntpyr" path="res://game_assets/assets.png" id="1_uw5v6"]
 [ext_resource type="PackedScene" uid="uid://csaelec8vx46t" path="res://objects/Fruit/Resource/resource.tscn" id="2_oyvdp"]
+[ext_resource type="AudioStream" uid="uid://cexfqrsl5rfby" path="res://sound/sfx/sfx_berry.mp3" id="4_cv4x8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i4l2f"]
 atlas = ExtResource("1_uw5v6")
 region = Rect2(32, 48, 32, 32)
+
+[sub_resource type="Curve" id="Curve_cv4x8"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.071428575, 1), 0.0, 0.0, 0, 0, Vector2(0.7706767, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oyvdp"]
 radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i4l2f"]
 radius = 48.0
+
+[sub_resource type="Animation" id="Animation_cv4x8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_tddei"]
+resource_name = "shake"
+length = 0.2
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.08726646259971647, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_doqy1"]
+_data = {
+&"RESET": SubResource("Animation_cv4x8"),
+&"shake": SubResource("Animation_tddei")
+}
 
 [node name="KookaberryBush" type="StaticBody2D" unique_id=2068413751]
 script = ExtResource("1_i4l2f")
@@ -21,6 +64,28 @@ resource_scene = ExtResource("2_oyvdp")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=361305954]
 position = Vector2(1, -16)
 texture = SubResource("AtlasTexture_i4l2f")
+
+[node name="Leaves" type="CPUParticles2D" parent="." unique_id=1982884766]
+unique_name_in_owner = true
+position = Vector2(0, -10)
+emitting = false
+amount = 10
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 22.33
+gravity = Vector2(0, 10)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+orbit_velocity_min = -0.05
+orbit_velocity_max = 0.01
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_cv4x8")
+color = Color(0.16078432, 0.44313726, 0.3019608, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1676525299]
 position = Vector2(1, -9)
@@ -34,5 +99,14 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=270721445]
 shape = SubResource("CircleShape2D_i4l2f")
 debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[node name="BerryProgress" type="AudioStreamPlayer" parent="." unique_id=1773001953]
+unique_name_in_owner = true
+stream = ExtResource("4_cv4x8")
+bus = &"SFX"
+
+[node name="ShakeBush" type="AnimationPlayer" parent="." unique_id=1949890794]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_doqy1")
 
 [connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]

@@ -23,6 +23,22 @@ var ingredients: Dictionary = {
 # The 4-slot potion hotbar. 'null' means empty, otherwise it holds a string ID like "potion_red"
 var potions: Array = [null, null, null, null]
 
+#For the cauldron
+var fuel_drain_modifier: float = 1.0
+
+signal active_potions_changed
+
+var active_potions: Array[String] = []
+
+func add_active_potion(potion_name: String) -> void:
+	active_potions.append(potion_name)
+	active_potions_changed.emit()
+
+func remove_active_potion(potion_name: String) -> void:
+	# erase() only removes the first instance it finds, which is safe enough here
+	active_potions.erase(potion_name)
+	active_potions_changed.emit()
+
 func add_ingredient(item_name: String, amount: int = 1) -> bool:
 	if ingredients.has(item_name):
 		if ingredients[item_name] < MAX_INGREDIENT_CAP:

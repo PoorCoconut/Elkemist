@@ -41,6 +41,21 @@ region = Rect2(32, 0, 16, 16)
 atlas = ExtResource("2_t5n4e")
 region = Rect2(48, 0, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxadl"]
+atlas = ExtResource("2_t5n4e")
+region = Rect2(80, 48, 16, 16)
+
+[sub_resource type="Curve" id="Curve_aqkxd"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2932331, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_t5n4e"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.08646617, 1), 0.0, 0.0, 0, 0, Vector2(0.65789473, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_t5n4e"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0.21568628, 1)
+
 [node name="Cauldron" type="StaticBody2D" unique_id=1133878123]
 script = ExtResource("1_nvby6")
 fuel_drain_rate = 5.0
@@ -56,6 +71,7 @@ rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_vrkcj")
 
 [node name="InteractionArea" type="Area2D" parent="." unique_id=220216122]
+visible = false
 position = Vector2(0, -8)
 collision_layer = 0
 collision_mask = 2
@@ -225,6 +241,73 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="BrewingParticles" type="CPUParticles2D" parent="." unique_id=1257992676]
+unique_name_in_owner = true
+position = Vector2(0, -22)
+emitting = false
+amount = 10
+texture = SubResource("AtlasTexture_pxadl")
+emission_shape = 3
+emission_rect_extents = Vector2(10, 1)
+gravity = Vector2(0, -50)
+scale_amount_min = 0.1
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_aqkxd")
+color = Color(0.37254903, 0.8039216, 0.89411765, 1)
+
+[node name="FireLarge" type="CPUParticles2D" parent="." unique_id=327987210]
+unique_name_in_owner = true
+amount = 50
+preprocess = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(5, 1)
+gravity = Vector2(0, -10)
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+orbit_velocity_min = -0.1
+orbit_velocity_max = 0.1
+radial_accel_max = 35.71
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_t5n4e")
+color_ramp = SubResource("Gradient_t5n4e")
+
+[node name="FireMedium" type="CPUParticles2D" parent="." unique_id=946290844]
+unique_name_in_owner = true
+emitting = false
+amount = 25
+preprocess = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(5, 1)
+gravity = Vector2(0, -10)
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+orbit_velocity_min = -0.1
+orbit_velocity_max = 0.1
+radial_accel_max = 35.71
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_t5n4e")
+color_ramp = SubResource("Gradient_t5n4e")
+
+[node name="FireSmall" type="CPUParticles2D" parent="." unique_id=363905872]
+unique_name_in_owner = true
+emitting = false
+amount = 10
+preprocess = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(5, 1)
+gravity = Vector2(0, -10)
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+orbit_velocity_min = -0.1
+orbit_velocity_max = 0.1
+radial_accel_max = 35.71
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_t5n4e")
+color_ramp = SubResource("Gradient_t5n4e")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=834127232]
+zoom = Vector2(3, 3)
 
 [connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="." method="_on_interaction_area_body_exited"]

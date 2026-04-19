@@ -17,11 +17,17 @@ func enterState():
 		var shape = PLAYER.dash_hitbox.get_node("CollisionShape2D")
 		shape.set_deferred("disabled", false)
 	
-	var current_input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	
 	dash_direction = PLAYER.global_position.direction_to(PLAYER.get_global_mouse_position())
 	
-	PLAYER.velocity = dash_direction * dash_speed
+	# --- CONFUSION LOGIC START ---
+	if PLAYER.is_confused:
+		dash_direction *= -1
+	# --- CONFUSION LOGIC END ---
+	
+	PLAYER.velocity = dash_direction * (dash_speed * PLAYER.dash_speed_modifier)
+	
+	if PLAYER.is_ramming:
+		PLAYER.set_collision_mask_value(1, false)
 
 func updateState(delta: float):
 	PLAYER.velocity = PLAYER.velocity.move_toward(Vector2.ZERO, dash_friction * delta)
@@ -41,3 +47,5 @@ func exitState():
 	if PLAYER.dash_hitbox:
 		var shape = PLAYER.dash_hitbox.get_node("CollisionShape2D")
 		shape.set_deferred("disabled", true)
+	# Turn wall collisions safely back on
+	PLAYER.set_collision_mask_value(1, true)

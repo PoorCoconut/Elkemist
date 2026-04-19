@@ -20,9 +20,12 @@ func _unhandled_input(event: InputEvent) -> void:
 	if player_in_range and has_berries:
 		if event.is_action_pressed("interact"):
 			current_clicks += 1
+			%BerryProgress.pitch_scale = 1.0 + (current_clicks * 0.1)
+			%BerryProgress.play()
 			
 			# TODO: Add a slight rotation or scale tween here to visually show the bush rustling
-			
+			%ShakeBush.play("shake")
+			%Leaves.emitting = true
 			if current_clicks >= clicks_required:
 				drop_berries()
 

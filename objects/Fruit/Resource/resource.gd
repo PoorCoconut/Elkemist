@@ -38,6 +38,7 @@ func _on_body_entered(body: Node2D) -> void:
 		var picked_up = GameManager.add_ingredient(item_string, 1)
 		
 		if picked_up:
+			SoundBank.play_global_sfx("collect")
 			queue_free()
 
 func _on_magnet_area_body_entered(body: Node2D) -> void:
